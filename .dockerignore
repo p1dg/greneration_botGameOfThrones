@@ -1,0 +1,6 @@
+*venv/
+*datasets
+*.log
+*__pycache__
+*models_storage
+*wandb
