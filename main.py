@@ -1,6 +1,5 @@
 from data.data_preparation import parse_dataset
-from model.train_bi_encoder import train_bi_encoder_model
-from model.train_cross_encoder import train_cross_encoder_model
+from model.train_llama import train_llama_model
 from model.inference_chat_bot import RetrivalBot
 
 from flask import Flask, render_template, request, jsonify
@@ -32,23 +31,11 @@ def get_messages():
 
 
 if __name__ == "__main__":
-    train_data = parse_dataset(data_path="./data/datasets/prepaired_data.df")
-    bi_encoder_model = train_bi_encoder_model(
-        data=train_data,
-        save_path="./models_storage/sbert_trained",
-        # model_path="./models_storage/sbert_trained",
+    train_data = parse_dataset(
+        save_path="./data/datasets/prepaired_data",
+        data_path="./data/datasets/prepaired_data",
     )
-    cross_encoder_model = train_cross_encoder_model(
-        sbert_path="./models_storage/sbert_trained",
-        save_path="./models_storage/cross_encoder_trained.pth",
-        # model_path="./models_storage/cross_encoder_trained.pth",
-    )
+    model = train_llama_model(train_data,)
 
-    bot = RetrivalBot(finetuned_ce=cross_encoder_model, data=train_data)
-    app.run(debug=True)
-
-    # print("answer your questuions")
-    # while True:
-    #     query = str(input())
-    #     answer = bot.get_best_rand_reply(query=query)
-    #     print(answer[0])
+    # bot = RetrivalBot(finetuned_ce=cross_encoder_model, data=train_data)
+    # app.run(debug=True)
