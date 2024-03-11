@@ -1,6 +1,6 @@
 from data.data_preparation import parse_dataset
 from model.train_llama import train_llama_model
-from model.inference_chat_bot import RetrivalBot
+from model.inference_chat_bot import GenerationBot
 
 from flask import Flask, render_template, request, jsonify
 
@@ -20,8 +20,8 @@ def send_message():
     user_message = input["message"]
     if len(user_message) != 0:
         messages.append(f"you: {user_message}")
-        answer = bot.get_best_rand_reply(query=user_message)
-        messages.append(f"bot: {answer[0]}")
+        answer, role = bot.generate_answer(query=user_message)
+        messages.append(f"{role}: {answer}")
     return jsonify({"message": user_message})
 
 
@@ -33,9 +33,13 @@ def get_messages():
 if __name__ == "__main__":
     train_data = parse_dataset(
         save_path="./data/datasets/prepaired_data",
-        data_path="./data/datasets/prepaired_data",
+        # data_path="./data/datasets/prepaired_data",
     )
     model = train_llama_model(train_data,)
 
-    # bot = RetrivalBot(finetuned_ce=cross_encoder_model, data=train_data)
-    # app.run(debug=True)
+    bot = GenerationBot(
+        trained_model_dir='./models_storage/checkpoint-700',
+        role='daenerys targaryen',
+    )
+    answer, role = bot.generate_answer('whhat happend to ned stark?')
+    app.run(debug=True)

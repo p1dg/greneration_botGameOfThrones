@@ -21,7 +21,6 @@ def train_llama_model(
     per_device_train_batch_size=3,
     gradient_accumulation_steps=2,
     optim="paged_adamw_32bit",
-    save_strategy="steps",
     save_steps=100,
     logging_steps=50,
     learning_rate=2e-3,
