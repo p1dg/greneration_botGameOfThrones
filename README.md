@@ -13,6 +13,6 @@
 
 ### OR
 
-docker build --tag 'generation_bot' . 
+docker build --tag 'generation_bot' .
 
-docker run -it --rm --name generation_bot -p 5000:5000  generation_bot:latest
+docker run -it --rm --name generation_bot --gpus all -p 5000:5000 generation_bot:latest
