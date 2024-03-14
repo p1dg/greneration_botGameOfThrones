@@ -1,9 +1,10 @@
-accelerate @ git+https://github.com/huggingface/accelerate.git@97d2168e5953fe7373a06c69c02c5a00a84d5344
+accelerate==0.27.2
 aiohttp==3.9.3
 aiosignal==1.3.1
+asgiref==3.7.2
 async-timeout==4.0.3
 attrs==23.2.0
-bitsandbytes==0.41.0
+bitsandbytes==0.43.0
 bitsandbytes-cuda116==0.26.0.post2
 blinker==1.7.0
 certifi==2024.2.2
@@ -69,12 +70,12 @@ shtab==1.7.1
 six==1.16.0
 sympy==1.12
 threadpoolctl==3.3.0
-tokenizers==0.15.2
-# torch==2.2.1
-# torchaudio==2.2.1+cu118
-# torchvision==0.17.1+cu118
+tokenizers==0.13.3
+torch==2.2.1
+torchaudio==2.2.1+cu118
+torchvision==0.17.1+cu118
 tqdm==4.66.2
-transformers==4.38.1
+transformers==4.30.0
 triton==2.2.0
 trl==0.7.11
 typing_extensions==4.9.0
